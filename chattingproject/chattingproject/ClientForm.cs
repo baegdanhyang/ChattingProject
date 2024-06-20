@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace chattingproject
 {
@@ -400,6 +401,20 @@ namespace chattingproject
         private void btn_copy_Click(object sender, EventArgs e)
         {
             CopyTextToClipboard();
+        }
+
+        private void btnCalendarSave_Click(object sender, EventArgs e)
+        {
+            StreamWriter sw; 
+            sw = new StreamWriter("Log.txt");
+            int nCount = CalendarEventsListBox.Items.Count; 
+                for (int i = 0; i < nCount; i++) 
+            {
+                CalendarEventsListBox.Items[i] += "\r\n";
+                sw.Write(CalendarEventsListBox.Items[i]); 
+            }
+            sw.Close();
+
         }
     }
 }
